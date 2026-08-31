@@ -30,7 +30,7 @@ function Auth() {
   const loginWithGithub = () => {
     setIsLoading(true);
     // Navigate the browser directly — the backend will redirect to GitHub OAuth
-    window.location.href = `${BACKEND_URL}/api/auth/github`;
+    window.location.href = `/api/auth/github`;
   };
 
   if (isCheckingAuth) {
