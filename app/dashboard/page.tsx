@@ -9,6 +9,8 @@ import {
   User as UserIcon,
   GitCompareArrowsIcon,
 } from "lucide-react";
+import RepositoriesModel from "@/components/RepositoriesModel";
+import DocumentsModel from "@/components/DocumentsModel";
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
@@ -24,6 +26,10 @@ function Dashboard() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const [documentsOpen, setDocumentsOpen] = useState(false);
+  const [isDocumentationLoading, setIsDocumentationLoading] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -83,12 +89,12 @@ function Dashboard() {
     <div className="min-h-screen bg-[#0a0a0f] text-white">
       {/* Background effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-[30%] -left-[15%] w-[45%] h-[45%] rounded-full bg-purple-600/5 blur-[120px]" />
-        <div className="absolute -bottom-[20%] -right-[15%] w-[40%] h-[40%] rounded-full bg-blue-600/5 blur-[120px]" />
+        <div className="absolute top-[-30%] left-[-15%] w-[45%] h-[45%] rounded-full bg-purple-600/5 blur-[120px]" />
+        <div className="absolute bottom-[-20%] right-[-15%] w-[40%] h-[40%] rounded-full bg-blue-600/5 blur-[120px]" />
       </div>
 
       {/* Navigation */}
-      <nav className="relative z-10 border-b border-white/[0.06]">
+      <nav className="relative z-10 border-b border-white/6">
         <div className="mx-auto max-w-7xl flex items-center justify-between px-6 py-4 md:px-12">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-blue-500">
@@ -157,6 +163,7 @@ function Dashboard() {
         {/* Quick action card */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <button
+          onClick={() => setOpen(true)}
             id="new-documentation-button"
             className="group rounded-2xl border border-dashed border-white/[0.08] bg-white/[0.02] p-6 text-left transition-all duration-300 hover:border-purple-500/30 hover:bg-purple-500/5 hover:shadow-lg hover:shadow-purple-500/5"
           >
@@ -181,17 +188,23 @@ function Dashboard() {
             </p>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.05]">
-              <FileText className="h-6 w-6 text-[#888]" />
+          <button
+            onClick={() => setDocumentsOpen(true)}
+            className="group rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 text-left transition-all duration-300 hover:border-purple-500/30 hover:bg-purple-500/5 hover:shadow-lg hover:shadow-purple-500/5 cursor-pointer"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.05] group-hover:bg-purple-500/20 transition-colors">
+              <FileText className="h-6 w-6 text-[#888] group-hover:text-purple-400 transition-colors" />
             </div>
             <h3 className="mt-4 text-base font-semibold">Your Documents</h3>
             <p className="mt-1 text-sm text-[#666]">
-              No documentation generated yet. Get started above!
+              View your previously generated documentation.
             </p>
-          </div>
+          </button>
         </div>
       </main>
+      
+      <RepositoriesModel open={open} setOpen={setOpen} username={user.username} isDocumentationLoading={isDocumentationLoading} setIsDocumentationLoading={setIsDocumentationLoading} />
+      <DocumentsModel open={documentsOpen} setOpen={setDocumentsOpen} />
     </div>
   );
 }
