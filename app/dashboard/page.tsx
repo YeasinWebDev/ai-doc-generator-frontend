@@ -34,7 +34,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/auth/me`, {
+        const res = await fetch(`/api/auth/me`, {
           credentials: "include",
         });
 

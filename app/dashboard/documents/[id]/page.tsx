@@ -20,7 +20,7 @@ export default function DocumentView() {
   useEffect(() => {
     const fetchDocument = async () => {
       try {
-        const res = await fetch(`${BACKEND_URL}/api/documentation/${params.id}`, {
+        const res = await fetch(`/api/documentation/${params.id}`, {
           credentials: "include",
         });
 
