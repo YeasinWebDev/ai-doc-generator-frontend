@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2, FileText, ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 type Document = {
   id: string;
@@ -40,7 +39,7 @@ export default function DocumentsModel({
       setIsLoading(true);
       setError(null);
       try {
-        const res = await fetch(`${BACKEND_URL}/api/documentation/user/documents`, {
+        const res = await fetch(`/api/documentation/user/documents`, {
           credentials: "include",
           headers: {
             "Content-Type": "application/json",

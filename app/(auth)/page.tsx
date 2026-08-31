@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Loader2, ArrowRight, Shield, Zap, FileText, GitCompareArrowsIcon } from "lucide-react";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 function Auth() {
   const [isLoading, setIsLoading] = useState(false);

@@ -12,7 +12,6 @@ import { Loader2, Search, GitCompareArrowsIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import toast from "react-hot-toast";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 type Repository = {
   id: number;
@@ -71,7 +70,7 @@ export default function RepositoriesModel({
         });
 
         const res = await fetch(
-          `${BACKEND_URL}/api/documentation/?${queryParams.toString()}`,
+          `/api/documentation/?${queryParams.toString()}`,
           {
             credentials: "include",
             headers: {
@@ -102,7 +101,7 @@ export default function RepositoriesModel({
 
   const handleGenerateDocumentation = async() => {
     setIsDocumentationLoading(true)
-    const res = await fetch(`${BACKEND_URL}/api/documentation`, {
+    const res = await fetch(`/api/documentation`, {
       method: "POST",
       credentials: "include",
       headers: {

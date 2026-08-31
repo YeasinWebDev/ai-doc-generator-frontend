@@ -12,7 +12,6 @@ import {
 import RepositoriesModel from "@/components/RepositoriesModel";
 import DocumentsModel from "@/components/DocumentsModel";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 interface AuthUser {
   id: string;
@@ -62,7 +61,7 @@ function Dashboard() {
   const handleLogout = async () => {
     setIsLoggingOut(true);
     try {
-      await fetch(`${BACKEND_URL}/api/auth/logout`, {
+      await fetch(`/api/auth/logout`, {
         method: "POST",
         credentials: "include",
       });

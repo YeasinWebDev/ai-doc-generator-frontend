@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export default function DocumentView() {
   const params = useParams();
