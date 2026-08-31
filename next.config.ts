@@ -1,7 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  rewrites: async () => [
+    {
+      source: "/api/:path*",
+      destination: "https://ai-doc-generator-chi.vercel.app/api/:path*",
+    },
+  ],
 };
 
 export default nextConfig;
